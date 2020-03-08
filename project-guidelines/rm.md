@@ -20,3 +20,7 @@ INSERT INTO `followers` (`userID`, `vacationID`) VALUES ('1', '1'); <!-- קשר 
 עמוד ילד קורא למידע של הילד עצמו -->
 
 DELETE FROM `vacations` WHERE `vacations`.`vacationID` = 5
+
+manual fetch warning:
+
+vacations + single + sidebar (in case of ip change)
