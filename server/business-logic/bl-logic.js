@@ -1,4 +1,4 @@
-const dal = require("./dal");
+const dal = require("../dal");
 
 async function getAllVacsAsync() {
   const sql = `SELECT vacationID, vacationName,description, destination, picFileName, DATE_FORMAT(startDate, "%m/%d/%Y") as startDate, DATE_FORMAT(endDate, "%m/%d/%Y") as endDate, price FROM vacations`;
