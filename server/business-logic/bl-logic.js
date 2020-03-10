@@ -10,22 +10,6 @@ async function getOneVacAsync(id) {
   const user = await dal.executeAsync(sql);
   return user;
 }
-async function getAllUsersAsync() {
-  const sql = "SELECT * FROM users";
-  const users = await dal.executeAsync(sql);
-  return users;
-}
-async function getOneUserAsync(id) {
-  const sql = `SELECT * FROM users WHERE userID = ${id}`;
-  const user = await dal.executeAsync(sql);
-  return user;
-}
-async function addUserAsync(user) {
-  const sql = `INSERT INTO users ( firstName, lastName, userName, password, isAdmin) VALUES('${user.firstName}','${user.lastName}','${user.userName}','${user.password}',${user.isAdmin})`;
-  const info = await dal.executeAsync(sql);
-  user.id = info.insertId;
-  return user;
-}
 
 async function addVacAsync(vac) {
   const sql = `INSERT INTO vacations (vacationName,description, destination, picFileName, DATE_FORMAT(startDate, "%m/%d/%Y") as startDate, DATE_FORMAT(endDate, "%m/%d/%Y") as endDate, price) VALUES('${vac.vacationName}', '${vac.description}','${vac.destination}','${vac.picFileName}','${vac.startDate}','${vac.endDate}','${vac.price}')`;
@@ -97,8 +81,5 @@ module.exports = {
   addVacAsync,
   updateFullVacationAsync,
   updatePartialVacAsync,
-  deleteOneVacAsync,
-  getAllUsersAsync,
-  getOneUserAsync,
-  addUserAsync
+  deleteOneVacAsync
 };

@@ -3,11 +3,43 @@ const express = require("express");
 const authLogic = require("../business-logic/auth-logic");
 const router = express.Router();
 
-router.post("/register", (request, response) => {
-  // Save new user to the database (if username not exist)
+// GET http://localhost:3000/api/users
+router.get("/users", async (request, response) => {
+  try {
+    // if (!request.session.isLoggedIn) {
+    //   response.status(403).send("Access Denied! Please Log-In!");
+    //   return;
+    // }
+    const users = await authLogic.getAllUsersAsync();
+    response.json(users);
+  } catch (err) {
+    response.status(500).send(err.message);
+  }
+});
+// GET http://localhost:3000/api/users/1
+router.get("/users/:id", async (request, response) => {
+  try {
+    const id = +request.params.id;
+    const user = await authLogic.getOneUserAsync(id);
+    response.json(user);
+  } catch (err) {
+    response.status(500).send(err.message);
+  }
 });
 
-// Log-in:
+// Sign-up: http://localhost:3003/api/auth/register
+
+router.post("/register", async (request, response) => {
+  try {
+    const user = request.body;
+    const addedUser = await authLogic.addUserAsync(user);
+    response.status(201).json(addedUser);
+  } catch (err) {
+    response.status(500).send(err.message);
+  }
+});
+
+// Log-in: http://localhost:3003/api/auth/login
 router.post("/login", async (request, response) => {
   try {
     // Check in database if user exist:
