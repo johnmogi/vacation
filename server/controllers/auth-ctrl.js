@@ -6,10 +6,6 @@ const router = express.Router();
 // GET http://localhost:3000/api/users
 router.get("/users", async (request, response) => {
   try {
-    // if (!request.session.isLoggedIn) {
-    //   response.status(403).send("Access Denied! Please Log-In!");
-    //   return;
-    // }
     const users = await authLogic.getAllUsersAsync();
     response.json(users);
   } catch (err) {
@@ -47,12 +43,12 @@ router.post("/login", async (request, response) => {
     const password = request.body.password;
 
     const user = await authLogic.isUserExist(username, password);
-
-    if (!user || !password || !username || user.length == 0) {
-      request.session.isLoggedIn = false;
-      response.status(403).send("Incorrect username or password");
-      return;
-    }
+    // || user.length == 0
+    // if (!user || !password || !username) {
+    //   request.session.isLoggedIn = false;
+    //   response.status(403).send("Incorrect username or password");
+    //   return;
+    // }
 
     // Save in the session that user is logged in, and user's role:
     request.session.isLoggedIn = true;
