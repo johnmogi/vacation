@@ -24,7 +24,7 @@ server.use(express.json());
 server.use("/api", vacsController);
 server.use("/api/auth", authController);
 server.listen(port, () =>
-  console.log(`Server Vacations running on port ${port}`)
+  console.log(`Server Vacations running on port http://localhost:${port}`)
 );
 // server.listen(port, () =>
 //   console.log("Listening to Vacations on http://localhost:3003")

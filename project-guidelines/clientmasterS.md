@@ -1,6 +1,7 @@
 1. npx create-react-app client --template typescript cd client
 2. npm i react-router-dom @types/react-router-dom
-3. npm install @material-ui/core
+<!-- 3. npm install @material-ui/core -->
+npm i react-bootstrap bootstrap
 4. folder structure:<br>
   index.tsx (layout) import 'bootstrap/dist/css/bootstrap.min.css'; components: layout header sidebar main footer
 5. index.tsx:<br>
