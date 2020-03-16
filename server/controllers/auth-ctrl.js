@@ -54,7 +54,7 @@ router.post("/login", async (request, response) => {
     request.session.isLoggedIn = true;
     request.session.role = user.isAdmin ? "Admin" : "User";
 
-    response.json(user);
+    response.json(user).send("user is logged in");
   } catch (err) {
     response.status(500).send(err.message);
   }
@@ -68,6 +68,14 @@ router.post("/logout", (request, response) => {
   } catch (err) {
     response.status(500).send(err.message);
   }
+});
+
+//status:
+router.post("/status", (request, response) => {
+  if (request.session.isLoggedIn) {
+    response.status(201).send("user is logged in");
+  }
+  response.status(301).send("user is logged out");
 });
 
 module.exports = router;
